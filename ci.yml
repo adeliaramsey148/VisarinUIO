@@ -6,13 +6,11 @@ permissions:
   contents: read # to fetch code (actions/checkout)
 
 jobs:
-  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 19
           cache: npm
       - run: npm ci
       - run: npm run lint
@@ -42,7 +40,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: npm
-      - run: npm ci
       - run: npx run-s init test-promises test-observables
 
   tests:
